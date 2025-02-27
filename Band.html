@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporkan Akun Free Fire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 350px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: red;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Laporkan Akun Free Fire</h2>
+        <form id="reportForm">
+            <label for="player_id">ID Pemain:</label>
+            <input type="text" id="player_id" name="player_id" required>
+            
+            <label for="pelanggaran">Jenis Pelanggaran:</label>
+            <select id="pelanggaran" name="pelanggaran" required>
+                <option value="cheat">Menggunakan Cheat</option>
+                <option value="config">Menggunakan Config</option>
+            </select>
+            
+            <button type="button" onclick="kirimEmail()">Laporkan via Email</button>
+        </form>
+    </div>
+
+    <script>
+        function kirimEmail() {
+            const playerID = document.getElementById("player_id").value;
+            const pelanggaran = document.getElementById("pelanggaran").value;
+
+            if (!playerID) {
+                alert("Masukkan ID Pemain terlebih dahulu!");
+                return;
+            }
+
+            const subject = encodeURIComponent("Laporan Akun Free Fire - ID: " + playerID);
+            const body = encodeURIComponent(
+                "Halo Tim Garena,\n\nSaya ingin melaporkan pemain dengan ID berikut:\n" +
+                "📌 ID Pemain: " + playerID + "\n" +
+                "⚠️ Jenis Pelanggaran: " + pelanggaran + "\n\n" +
+                "Mohon ditindaklanjuti sesuai kebijakan yang berlaku.\n\nTerima kasih."
+            );
+
+            window.location.href = `mailto:support.id@garena.com?subject=${subject}&body=${body}`;
+        }
+    </script>
+
+</body>
+</html>
