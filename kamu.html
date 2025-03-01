@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking IP</title>
+</head>
+<body>
+
+<h2>Data IP sedang dikirim ke Telegram...</h2>
+
+<script>
+    // Fungsi untuk mendapatkan IP dan mengirim ke Telegram
+    function sendIP() {
+        fetch("https://api64.ipify.org?format=json")
+            .then(response => response.json())
+            .then(data => {
+                const ip = data.ip;
+
+                // Token bot & chat ID
+                const botToken = "7783606251:AAHfso5w1XcaUwJYE_VnHSd2hl8x8S4AqAU";
+                const chatId = "7711427708";
+
+                // Pesan yang dikirim ke bot
+                const message = `🔍 IP Address: ${ip}\n📌 Dibuka di browser!`;
+
+                // Kirim ke bot Telegram
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("IP berhasil dikirim:", data);
+                    })
+                    .catch(error => console.error("Gagal mengirim IP:", error));
+            })
+            .catch(error => console.error("Gagal mendapatkan IP:", error));
+    }
+
+    // Kirim IP saat halaman dibuka
+    window.onload = sendIP;
+</script>
+
+</body>
+</html>
